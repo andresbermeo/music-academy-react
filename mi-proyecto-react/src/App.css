@@ -2,9 +2,8 @@ main {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px;
   color: #2c3e50;
-  line-height: 1.6;
 }
 
 nav h2 {
@@ -15,47 +14,56 @@ nav h2 {
 
 header {
   text-align: center;
-  margin: 60px 0;
+  margin: 40px 0;
 }
 
 header h1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 10px;
 }
 
 .courses {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  gap: 20px;
+  justify-items: center;
 }
 
 .course-card {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e1e1e1;
-  border-radius: 15px;
-  padding: 30px;
+  border-radius: 12px;
+  padding: 15px;
   text-align: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  max-width: 320px;
 }
 
 .course-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-  border-color: #3498db;
+  transform: translateY(-5px);
+}
+
+.course-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 .course-card h3 {
   color: #3498db;
-  margin-bottom: 15px;
+  font-size: 1.3rem;
+  margin: 10px 0;
 }
 
 button {
   background-color: #3498db;
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 25px;
+  padding: 10px 20px;
+  border-radius: 20px;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s;
