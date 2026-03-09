@@ -72,3 +72,30 @@ button {
 button:hover {
   background-color: #2980b9;
 }
+
+.btn-enroll {
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.btn-enroll:hover {
+  background-color: #2980b9;
+}
+
+.btn-enrolled {
+  background-color: #2ecc71;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px;
+  cursor: default;
+}
