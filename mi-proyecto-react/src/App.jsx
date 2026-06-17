@@ -3,6 +3,8 @@ import './App.css'
 
 function App() {
   const [enrolled, setEnrolled] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   const courses = [
     {
@@ -37,6 +39,11 @@ function App() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`¡Gracias ${name}! Nos comunicaremos a: ${email}`);
+  };
+
   return (
     <main>
       <nav>
@@ -64,6 +71,24 @@ function App() {
           </div>
         ))}
       </section>
+      <section className="contact-form">
+  <h2>Inscríbete a la Academia</h2>
+<form onSubmit={handleSubmit}>
+    <input 
+      type="text" 
+      placeholder="Tu nombre" 
+      value={name} 
+      onChange={(e) => setName(e.target.value)} 
+    />
+    <input 
+      type="email" 
+      placeholder="Tu correo" 
+      value={email} 
+      onChange={(e) => setEmail(e.target.value)} 
+    />
+    <button type="submit">Enviar información</button>
+  </form>
+</section> 
     </main>
   );
 }
