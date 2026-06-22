@@ -8,7 +8,7 @@ function App() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    fetch('/courses.json')
+    fetch(`${import.meta.env.BASE_URL}courses.json`)
       .then((response) => response.json())
       .then((data) => setCourses(data))
       .catch((error) => console.error("Error:", error));
