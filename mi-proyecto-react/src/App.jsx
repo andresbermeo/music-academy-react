@@ -1,37 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
+  const [courses, setCourses] = useState([]);
   const [enrolled, setEnrolled] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const courses = [
-    {
-      id: 1,
-      title: "Piano Lessons",
-      desc: "Master the keys with classical and modern techniques.",
-      img: "https://images.pexels.com/photos/164743/pexels-photo-164743.jpeg?auto=compress&cs=tinysrgb&w=600"
-    },
-    {
-      id: 2,
-      title: "Guitar Lessons",
-      desc: "From basic chords to advanced electric solos.",
-      img: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=600&auto=format&fit=crop"
-    },
-    {
-      id: 3,
-      title: "Singing Lessons",
-      desc: "Improve your range and vocal health with professionals.",
-      img: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=600&auto=format&fit=crop"
-    },
-    {
-      id: 4,
-      title: "Drum Lessons",
-      desc: "Find your rhythm and master the beat with our drum kit basics.",
-      img: "https://images.unsplash.com/photo-1543443374-b6fe10a6ab7b?q=80&w=600&auto=format&fit=crop"
-    } 
-  ];
+  useEffect(() => {
+    fetch('./courses.json')
+      .then((response) => response.json())
+      .then((data) => setCourses(data))
+      .catch((error) => console.error("Error:", error));
+  }, []);
 
   const handleEnroll = (id) => {
     if (!enrolled.includes(id)) {
@@ -71,24 +52,25 @@ function App() {
           </div>
         ))}
       </section>
+
       <section className="contact-form">
-  <h2>Inscríbete a la Academia</h2>
-<form onSubmit={handleSubmit}>
-    <input 
-      type="text" 
-      placeholder="Tu nombre" 
-      value={name} 
-      onChange={(e) => setName(e.target.value)} 
-    />
-    <input 
-      type="email" 
-      placeholder="Tu correo" 
-      value={email} 
-      onChange={(e) => setEmail(e.target.value)} 
-    />
-    <button type="submit">Enviar información</button>
-  </form>
-</section> 
+        <h2>Inscríbete a la Academia</h2>
+        <form onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            placeholder="Tu nombre" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
+          />
+          <input 
+            type="email" 
+            placeholder="Tu correo" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+          />
+          <button type="submit">Enviar información</button>
+        </form>
+      </section> 
     </main>
   );
 }
