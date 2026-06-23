@@ -46,21 +46,25 @@ function App() {
     onChange={(e) => setSearchTerm(e.target.value)}
   />
 </div>
-
+  
       <section className="courses">
-        {courses.map((course) => (
-          <div className="course-card" key={course.id}>
-            <img src={course.img} alt={course.title} className="course-img" />
-            <h3>{course.title}</h3>
-            <p>{course.desc}</p>
-            <button 
-              className={enrolled.includes(course.id) ? "btn-enrolled" : "btn-enroll"}
-              onClick={() => handleEnroll(course.id)}
-            >
-              {enrolled.includes(course.id) ? "Enrolled ✅" : "Enroll Now"}
-            </button>
-          </div>
-        ))}
+        {courses
+          .filter((course) =>
+            course.title.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .map((course) => (
+            <div className="course-card" key={course.id}>
+              <img src={course.img} alt={course.title} className="course-img" />
+              <h3>{course.title}</h3>
+              <p>{course.desc}</p>
+              <button 
+                className={enrolled.includes(course.id) ? "btn-enrolled" : "btn-enroll"}
+                onClick={() => handleEnroll(course.id)}
+              >
+                {enrolled.includes(course.id) ? "Enrolled ✅" : "Enroll Now"}
+              </button>
+            </div>
+          ))}
       </section>
 
       <section className="contact-form">
