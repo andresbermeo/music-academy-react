@@ -6,6 +6,7 @@ function App() {
   const [enrolled, setEnrolled] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}courses.json`)
@@ -36,6 +37,15 @@ function App() {
         <p>Expert-led lessons for all skill levels.</p>
         <button>Explore All Courses</button>
       </header>
+
+      <div className="search-container">
+  <input
+    type="text"
+    placeholder="Search courses..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+  />
+</div>
 
       <section className="courses">
         {courses.map((course) => (
