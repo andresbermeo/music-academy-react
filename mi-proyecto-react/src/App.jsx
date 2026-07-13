@@ -3,7 +3,10 @@ import './App.css'
 
 function App() {
   const [courses, setCourses] = useState([]);
-  const [enrolled, setEnrolled] = useState([]);
+  const [enrolled, setEnrolled] = useState(() => {
+    const saved = localStorage.getItem("enrolledCourses");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,6 +18,10 @@ function App() {
       .catch((error) => console.error("Error:", error));
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("enrolledCourses", JSON.stringify(enrolled));
+  }, [enrolled]);
+
   const handleEnroll = (id) => {
     if (!enrolled.includes(id)) {
       setEnrolled([...enrolled, id]);
@@ -24,6 +31,8 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`¡Gracias ${name}! Nos comunicaremos a: ${email}`);
+    setName("");
+    setEmail("");
   };
 
   return (
@@ -39,13 +48,13 @@ function App() {
       </header>
 
       <div className="search-container">
-  <input
-    type="text"
-    placeholder="Search courses..."
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-  />
-</div>
+        <input
+          type="text"
+          placeholder="Search courses..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
   
       <section className="courses">
         {courses
